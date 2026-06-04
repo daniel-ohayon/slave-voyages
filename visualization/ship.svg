@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="240" height="180">
+  <!-- bowsprit (points left) -->
+  <line x1="48" y1="106" x2="12" y2="86" stroke="#3a2614" stroke-width="3" stroke-linecap="round"/>
+  <!-- jib sail on bowsprit -->
+  <path d="M 16,88 L 48,72 L 48,104 Z" fill="#f5ecd7" stroke="#c9b88f" stroke-width="1"/>
+
+  <!-- masts -->
+  <line x1="80" y1="110" x2="80" y2="34" stroke="#3a2614" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="120" y1="110" x2="120" y2="20" stroke="#3a2614" stroke-width="4" stroke-linecap="round"/>
+  <line x1="160" y1="110" x2="160" y2="40" stroke="#3a2614" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- foremast sails -->
+  <path d="M 62,52 Q 80,56 98,52 L 98,72 Q 80,78 62,72 Z" fill="#f5ecd7" stroke="#c9b88f" stroke-width="1"/>
+  <path d="M 66,78 Q 80,82 94,78 L 94,100 Q 80,106 66,100 Z" fill="#efe4c9" stroke="#c9b88f" stroke-width="1"/>
+
+  <!-- mainmast sails -->
+  <path d="M 98,40 Q 120,45 142,40 L 142,64 Q 120,71 98,64 Z" fill="#f5ecd7" stroke="#c9b88f" stroke-width="1"/>
+  <path d="M 102,70 Q 120,75 138,70 L 138,100 Q 120,107 102,100 Z" fill="#efe4c9" stroke="#c9b88f" stroke-width="1"/>
+
+  <!-- mizzen sails -->
+  <path d="M 144,56 Q 160,60 176,56 L 176,74 Q 160,80 144,74 Z" fill="#f5ecd7" stroke="#c9b88f" stroke-width="1"/>
+  <path d="M 147,80 Q 160,84 173,80 L 173,102 Q 160,108 147,102 Z" fill="#efe4c9" stroke="#c9b88f" stroke-width="1"/>
+
+  <!-- yards (spars) -->
+  <line x1="60" y1="51" x2="100" y2="51" stroke="#3a2614" stroke-width="1.5"/>
+  <line x1="96" y1="39" x2="144" y2="39" stroke="#3a2614" stroke-width="1.5"/>
+  <line x1="142" y1="55" x2="178" y2="55" stroke="#3a2614" stroke-width="1.5"/>
+
+  <!-- pennant on mainmast -->
+  <path d="M 120,20 L 142,24 L 120,28 Z" fill="#b23b3b"/>
+
+  <!-- hull -->
+  <path d="M 40,106 L 200,106 L 190,130 Q 118,144 52,130 Z" fill="#5b3a22" stroke="#3a2614" stroke-width="1.5"/>
+  <!-- hull stripe -->
+  <path d="M 44,113 Q 118,121 194,113" fill="none" stroke="#d9b779" stroke-width="2"/>
+</svg>

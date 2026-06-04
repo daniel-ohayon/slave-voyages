@@ -1,0 +1,1212 @@
+{
+  "Africa, port unspecified": null,
+  "Africa port unspecified": null,
+  "Americas port unspecified": null,
+  "Americas region unspecified": null,
+  "Caribbean (colony unspecified)": [
+    17.0,
+    -63.0
+  ],
+  "British Caribbean colony unspecified": [
+    17.0,
+    -62.5
+  ],
+  "French Caribbean colony unspecified": [
+    15.0,
+    -61.5
+  ],
+  "Spanish Circum-Caribbean,unspecified": [
+    17.0,
+    -66.0
+  ],
+  "Southeast Africa and Indian Ocean islands port unspecified": [
+    -15.0,
+    44.0
+  ],
+  "East Africa port unspecified": [
+    -2.0,
+    42.0
+  ],
+  "West Central Africa and St Helena port unspecified": [
+    -5.0,
+    12.0
+  ],
+  "Senegambia and offshore Atlantic port unspecified": [
+    13.5,
+    -17.0
+  ],
+  "Bight of Biafra and Gulf of Guinea Islands port unspecified": [
+    4.0,
+    8.0
+  ],
+  "Gold Coast port unspecified": [
+    5.5,
+    -0.5
+  ],
+  "Windward Coast place unspecified": [
+    4.6,
+    -8.2
+  ],
+  "South Asia port unspecified": [
+    15.0,
+    74.0
+  ],
+  "Southeast Asia port unspecified": [
+    5.0,
+    110.0
+  ],
+  "Malabar Coast port unspecified": [
+    10.5,
+    76.0
+  ],
+  "Red Sea and Gulf of Aden port unspecified": [
+    12.0,
+    44.0
+  ],
+  "Seychelles port unspecified": [
+    -4.68,
+    55.49
+  ],
+  "Java port unspecified": [
+    -7.0,
+    110.5
+  ],
+  "Saint-Domingue then Haiti port unspecified": [
+    18.9712,
+    -72.2852
+  ],
+  "Ile de France, Mauritius": [
+    -20.2789,
+    57.5546
+  ],
+  "Ile de France Mauritius": [
+    -20.2789,
+    57.5546
+  ],
+  "Bourbon Reunion": [
+    -21.1151,
+    55.5364
+  ],
+  "Whydah Ouidah": [
+    6.275,
+    2.09
+  ],
+  "Foulpointe, Mahavelona": [
+    -17.6928,
+    49.5111
+  ],
+  "Foulpointe Mahavelona": [
+    -17.6928,
+    49.5111
+  ],
+  "Johanna Island Anjouan Nzwani": [
+    -12.2108,
+    44.4256
+  ],
+  "Sainte Marie St Mary's Island": [
+    -16.8667,
+    49.9167
+  ],
+  "St Lawrence Madagascar": [
+    -23.3667,
+    43.7167
+  ],
+  "Fort Dauphin": [
+    -25.0333,
+    46.9833
+  ],
+  "Port Dauphin Fort Dauphin": [
+    -25.0333,
+    46.9833
+  ],
+  "Antongil Bay": [
+    -15.5,
+    49.8333
+  ],
+  "Bombetoc; Bombetoka; Mahajanga; Majunga": [
+    -15.7167,
+    46.3167
+  ],
+  "Farantangane Farafangana": [
+    -22.8167,
+    47.8333
+  ],
+  "Fénérive Fenoarivo": [
+    -17.3833,
+    49.4167
+  ],
+  "Manazary; Manajary": [
+    -21.2333,
+    48.35
+  ],
+  "Masabe Massaby": [
+    -22.3,
+    43.4667
+  ],
+  "Massalege; Massaliege; Massaly; Magelage; Mazalagem": [
+    -14.85,
+    40.75
+  ],
+  "Tamatave Toamasina": [
+    -18.1603,
+    49.4027
+  ],
+  "Morondava Morondova": [
+    -20.2833,
+    44.3167
+  ],
+  "Gold Coast Fr definition": [
+    5.5557,
+    -0.1969
+  ],
+  "Gold Coast + Bight of Benin + Bight of Biafra": [
+    5.5557,
+    -0.1969
+  ],
+  "Windward + Ivory + Gold + Benin": [
+    4.9,
+    -4.8
+  ],
+  "Costa da Mina place unspecified": [
+    5.354,
+    -4.0083
+  ],
+  "Bight of Benin place unspecified": [
+    6.3649,
+    2.0834
+  ],
+  "Bights": [
+    4.0,
+    3.0
+  ],
+  "Congo North": [
+    -4.0,
+    11.8633
+  ],
+  "Congo River": [
+    -4.3265,
+    15.3277
+  ],
+  "Rio de Janeiro Sao Paulo Santa Catarina": [
+    -22.9068,
+    -43.1729
+  ],
+  "Rio de la Plata port unspecified": [
+    -34.6037,
+    -58.3816
+  ],
+  "Princes Island and Cape Lopez": [
+    1.5167,
+    9.55
+  ],
+  "Princes Island": [
+    1.5167,
+    7.3833
+  ],
+  "Cape Grand Mount": [
+    6.65,
+    -11.5333
+  ],
+  "Cape Mount (Cape Grand Mount)": [
+    6.65,
+    -11.5333
+  ],
+  "Côte de Malaguette (runs through to Cape Palmas on Windward Coast)": [
+    4.375,
+    -7.7167
+  ],
+  "Martinique place unspecified": [
+    14.6415,
+    -61.0242
+  ],
+  "Martinique, place unspecified": [
+    14.6415,
+    -61.0242
+  ],
+  "Guadeloupe place unspecified": [
+    16.265,
+    -61.551
+  ],
+  "Barbados place unspecified": [
+    13.1939,
+    -59.5432
+  ],
+  "Antigua place unspecified": [
+    17.0747,
+    -61.8175
+  ],
+  "Dominica place unspecified": [
+    15.415,
+    -61.371
+  ],
+  "Grenada place unspecified": [
+    12.1165,
+    -61.679
+  ],
+  "Jamaica place unspecified": [
+    18.5,
+    -77.3
+  ],
+  "Saint John (Antigua)": [
+    17.1274,
+    -61.8468
+  ],
+  "Cuba port unspecified": [
+    23.2,
+    -80.5
+  ],
+  "Cuba south coast": [
+    21.0,
+    -79.5
+  ],
+  "Bahamas port unspecified": [
+    25.0343,
+    -77.3963
+  ],
+  "Puerto Rico port unspecified": [
+    18.2208,
+    -66.5901
+  ],
+  "St Kitts port unspecified": [
+    17.3578,
+    -62.783
+  ],
+  "St Lucia port unspecified": [
+    13.9094,
+    -60.9789
+  ],
+  "St Barthélemy port unspecified": [
+    17.8975,
+    -62.8514
+  ],
+  "St Croix": [
+    17.7306,
+    -64.734
+  ],
+  "Suriname place unspecified": [
+    3.9193,
+    -56.0278
+  ],
+  "Bahia place unspecified": [
+    -12.9714,
+    -38.5014
+  ],
+  "Pernambuco place unspecified": [
+    -8.0476,
+    -34.877
+  ],
+  "French Africa (Goree or Senegal)": [
+    14.6928,
+    -17.4467
+  ],
+  "French Africa (Goree or Senegal) ": [
+    14.6928,
+    -17.4467
+  ],
+  "Gustavia St Barthélemy": [
+    17.8975,
+    -62.8514
+  ],
+  "Angola (possibly New Calabar)": [
+    -8.8369,
+    13.2894
+  ],
+  "Angola to Ardra": [
+    -8.8369,
+    13.2894
+  ],
+  "Angossy Bay Angontsy": [
+    -13.3833,
+    49.8833
+  ],
+  "Mongale": [
+    -4.25,
+    15.2833
+  ],
+  "Maningare; Manningare": [
+    -16.25,
+    49.7
+  ],
+  "Mangally": [
+    -21.75,
+    43.3833
+  ],
+  "Bonnivoul": [
+    -15.6167,
+    46.2167
+  ],
+  "Mogincual": [
+    -16.0333,
+    39.85
+  ],
+  "Oibo": [
+    4.0,
+    6.5
+  ],
+  "Pointe Larée": [
+    16.265,
+    -61.551
+  ],
+  "Louisiana": [
+    30.9843,
+    -91.9623
+  ],
+  "Liberia": [
+    6.3,
+    -10.8
+  ],
+  "Berbice": [
+    6.1,
+    -57.3167
+  ],
+  "Mascarene Islands": [
+    -20.2789,
+    57.5546
+  ],
+  "France place unspecified": [
+    46.2276,
+    2.2137
+  ],
+  "Joal or Saloum River": [
+    14.1667,
+    -16.8333
+  ],
+  "Amokou": [
+    6.2,
+    1.6
+  ],
+  "Apammin": [
+    5.0,
+    -1.6
+  ],
+  "Accra": [
+    5.5571096,
+    -0.2012376
+  ],
+  "Albreda": [
+    13.3347346,
+    -16.3849177
+  ],
+  "Ambriz": [
+    -7.844312,
+    13.106493
+  ],
+  "Americas, port unspecified": null,
+  "Americas, region unspecified": null,
+  "Angossy Bay, Angontsy": [
+    -13.3833,
+    49.8833
+  ],
+  "Anomabu": [
+    5.1783461,
+    -1.1215406
+  ],
+  "Antigua, place unspecified": [
+    17.0747,
+    -61.8175
+  ],
+  "Arcahaie": [
+    18.7701904,
+    -72.5118375
+  ],
+  "Ardra": [
+    6.275,
+    2.09
+  ],
+  "Badagry/Apa": [
+    6.4318831,
+    2.820229
+  ],
+  "Bahamas, port unspecified": [
+    25.0343,
+    -77.3963
+  ],
+  "Bahia, place unspecified": [
+    -12.9714,
+    -38.5014
+  ],
+  "Bali": [
+    -8.2271303,
+    115.1919203
+  ],
+  "Banana Islands": [
+    8.1055883,
+    -13.2272418
+  ],
+  "Bance/Bunce Island": [
+    8.43,
+    -12.97
+  ],
+  "Barbados, place unspecified": [
+    13.1939,
+    -59.5432
+  ],
+  "Bassa": [
+    5.9,
+    -9.8
+  ],
+  "Basse-Terre": [
+    16.0000778,
+    -61.7333373
+  ],
+  "Bengal": [
+    21.9,
+    88.5
+  ],
+  "Benguela": [
+    -12.5790048,
+    13.4037117
+  ],
+  "Benin": [
+    6.2,
+    2.5
+  ],
+  "Bight of Benin, place unspecified": [
+    6.275,
+    2.09
+  ],
+  "Bight of Biafra and Gulf of Guinea Islands, port unspecified": [
+    4.0,
+    8.0
+  ],
+  "Biloxi": [
+    30.4007626,
+    -88.8893818
+  ],
+  "Bimilipatam": [
+    17.89,
+    83.45
+  ],
+  "Bissagos": [
+    11.5700691,
+    -15.5290437
+  ],
+  "Bissau": [
+    11.85,
+    -15.7
+  ],
+  "Boina": [
+    -15.717,
+    46.317
+  ],
+  "Bonny": [
+    4.505781,
+    7.203466
+  ],
+  "Bourbon, Reunion": [
+    -21.1307379,
+    55.5364801
+  ],
+  "British Caribbean, colony unspecified": [
+    17.0,
+    -62.5
+  ],
+  "Buenos Aires": [
+    -35.5,
+    -56.5
+  ],
+  "Cabanas": [
+    22.982,
+    -82.955
+  ],
+  "Cabinda": [
+    -5.0,
+    11.8
+  ],
+  "Cacheu": [
+    12.274246,
+    -16.1648911
+  ],
+  "Calabar": [
+    4.9795999,
+    8.3373597
+  ],
+  "Calcutta": [
+    22.5726459,
+    88.3638953
+  ],
+  "Cap Français": [
+    19.758,
+    -72.204
+  ],
+  "Cap Lopez": [
+    -0.6226528,
+    8.7134388
+  ],
+  "Cape Coast Castle": [
+    5.103627,
+    -1.2411004
+  ],
+  "Cape Lahou": [
+    5.15,
+    -5.02
+  ],
+  "Cape Petit Mount": null,
+  "Cape Verde Islands": [
+    17.0555285,
+    -25.1723049
+  ],
+  "Cape of Good Hope": [
+    -34.35811,
+    18.47193
+  ],
+  "Caracas": [
+    10.5060934,
+    -66.9146008
+  ],
+  "Cartagena": [
+    10.391,
+    -75.479
+  ],
+  "Casamance": [
+    12.5951481,
+    -15.6823131
+  ],
+  "Cayenne": [
+    4.9371544,
+    -52.3258736
+  ],
+  "Cayes (Les)": [
+    18.1944428,
+    -73.7511601
+  ],
+  "Cess": [
+    5.47,
+    -9.6
+  ],
+  "Chama": [
+    5.0,
+    -1.75
+  ],
+  "Christiansborg": [
+    5.548,
+    -0.185
+  ],
+  "Cochin, Kochi": [
+    9.9679032,
+    76.2444378
+  ],
+  "Coringa": [
+    16.806,
+    82.234
+  ],
+  "Costa da Mina, place unspecified": null,
+  "Cuba, port unspecified": [
+    23.2,
+    -80.5
+  ],
+  "Cuba, south coast": [
+    21.0,
+    -79.5
+  ],
+  "Cul-de-Sac": [
+    18.0333145,
+    -63.0640744
+  ],
+  "Daman": [
+    20.4169701,
+    72.833173
+  ],
+  "Dominica, place unspecified": [
+    15.415,
+    -61.371
+  ],
+  "East Africa, port unspecified": [
+    -2.0,
+    42.0
+  ],
+  "Elmina": [
+    5.085879,
+    -1.350578
+  ],
+  "Epe": [
+    6.45,
+    3.3
+  ],
+  "Eva": null,
+  "Farantangane, Farafangana": [
+    -22.8167,
+    47.8333
+  ],
+  "Formosa": null,
+  "France, place unspecified": [
+    46.2276,
+    2.2137
+  ],
+  "Freetown": [
+    8.479004,
+    -13.26795
+  ],
+  "French Caribbean, colony unspecified": [
+    15.0,
+    -61.5
+  ],
+  "Fénérive, Fenoarivo": [
+    -17.382029,
+    49.4099733
+  ],
+  "Gabon": [
+    -0.6,
+    9.0
+  ],
+  "Galam": [
+    14.5,
+    -11.5
+  ],
+  "Gallinhas": [
+    7.3,
+    -12.2
+  ],
+  "Gambia": [
+    13.4,
+    -16.8
+  ],
+  "Goa": [
+    15.3004543,
+    74.0855134
+  ],
+  "Gold Coast, Fr definition": [
+    5.5557,
+    -0.1969
+  ],
+  "Gold Coast, port unspecified": [
+    5.5,
+    -0.5
+  ],
+  "Gorée": [
+    14.6664099,
+    -17.398279
+  ],
+  "Grand Bassa": [
+    6.1640621,
+    -9.895669
+  ],
+  "Grand Bassam": [
+    5.212884,
+    -3.743226
+  ],
+  "Grand Junk": [
+    5.0,
+    -9.5
+  ],
+  "Grand Mesurado": [
+    6.31,
+    -10.81
+  ],
+  "Grand Popo": [
+    6.2763745,
+    1.8067199
+  ],
+  "Grand Sestos": [
+    4.68,
+    -8.45
+  ],
+  "Grenada, place unspecified": [
+    12.1165,
+    -61.679
+  ],
+  "Guadeloupe, place unspecified": [
+    16.265,
+    -61.551
+  ],
+  "Gustavia, St Barthélemy": [
+    17.8957043,
+    -62.8508372
+  ],
+  "Havana": [
+    23.135305,
+    -82.3589631
+  ],
+  "Ibo": [
+    -12.2176514,
+    40.5962817
+  ],
+  "Iles de Los": [
+    9.4831038,
+    -13.8267346
+  ],
+  "Inhambane": [
+    -23.865,
+    35.383
+  ],
+  "Ivory Coast": [
+    5.35,
+    -4.0
+  ],
+  "Jacmel": [
+    18.2352587,
+    -72.5375127
+  ],
+  "Jacquin": [
+    6.358,
+    1.975
+  ],
+  "Jamaica, place unspecified": [
+    18.5,
+    -77.3
+  ],
+  "Java, port unspecified": [
+    -7.0,
+    110.5
+  ],
+  "Joal, or Saloum River": [
+    14.1667,
+    -16.8333
+  ],
+  "Johanna Island, Anjouan, Nzwani": [
+    -12.2265681,
+    44.4107049
+  ],
+  "Jérémie": [
+    18.6445835,
+    -74.1139182
+  ],
+  "Keta": [
+    5.9215688,
+    0.9910728
+  ],
+  "Key West": [
+    24.5548262,
+    -81.8020722
+  ],
+  "Kilwa": [
+    -8.93,
+    39.6
+  ],
+  "Kingston": [
+    17.9712148,
+    -76.7928128
+  ],
+  "Kormantine": [
+    5.28,
+    -1.08
+  ],
+  "La Balise": [
+    29.0,
+    -89.5
+  ],
+  "Lagos, Onim": [
+    6.455,
+    3.396
+  ],
+  "Le Havre": [
+    49.4938975,
+    0.1079732
+  ],
+  "Lindi": [
+    -10.005,
+    39.708
+  ],
+  "Little Popo": [
+    6.238,
+    1.613
+  ],
+  "Loango": [
+    -4.656168,
+    11.8115049
+  ],
+  "Lourenço Marques": [
+    -25.966,
+    32.573
+  ],
+  "Luanda": [
+    -8.8272699,
+    13.2439512
+  ],
+  "Léogane": [
+    18.5111126,
+    -72.6334255
+  ],
+  "Madagascar": [
+    -18.155,
+    49.415
+  ],
+  "Mafia": [
+    -7.8166985,
+    39.8080259
+  ],
+  "Malabar Coast, port unspecified": [
+    10.5,
+    76.0
+  ],
+  "Malembo": [
+    -5.2,
+    11.9
+  ],
+  "Margarita": [
+    11.0,
+    -64.0
+  ],
+  "Marie-Galante": [
+    15.936961,
+    -61.2670916
+  ],
+  "Masabe, Massaby": [
+    -22.3,
+    43.4667
+  ],
+  "Matanzas": [
+    23.0469236,
+    -81.5783032
+  ],
+  "Matitanana": [
+    -22.3974624,
+    47.8770959
+  ],
+  "Mayumba": [
+    -3.4315661,
+    10.6545667
+  ],
+  "Mombasa": [
+    -4.05052,
+    39.667169
+  ],
+  "Momboza or Zanzibar": [
+    -6.17,
+    39.19
+  ],
+  "Montevideo": [
+    -34.9058916,
+    -56.1913095
+  ],
+  "Montserrat, port unspecified": [
+    16.7425,
+    -62.1878
+  ],
+  "Morondava": [
+    -20.2951102,
+    44.2786121
+  ],
+  "Morondava, Morondova": [
+    -20.2833,
+    44.3167
+  ],
+  "Mozambique": [
+    -15.036,
+    40.733
+  ],
+  "Muscat": [
+    23.6123628,
+    58.5938134
+  ],
+  "Nantes": [
+    47.2186371,
+    -1.5541362
+  ],
+  "Nassau": [
+    25.0782266,
+    -77.3383438
+  ],
+  "New Calabar": [
+    4.642,
+    7.003
+  ],
+  "New Orleans": [
+    29.9561422,
+    -90.0733934
+  ],
+  "Nuevitas": [
+    21.5465273,
+    -77.2636267
+  ],
+  "Orissa/Odisha": [
+    20.4647134,
+    85.8587015
+  ],
+  "Paramaribo": [
+    5.8241764,
+    -55.1662813
+  ],
+  "Pensacola": [
+    30.421309,
+    -87.2169149
+  ],
+  "Pernambuco, place unspecified": [
+    -8.0476,
+    -34.877
+  ],
+  "Petit Mesurado": [
+    6.3,
+    -10.8
+  ],
+  "Petit-Goâve": [
+    18.4326935,
+    -72.865384
+  ],
+  "Pointe-à-Pitre": [
+    16.2408636,
+    -61.5334077
+  ],
+  "Pondichéry": [
+    10.9156489,
+    79.8069488
+  ],
+  "Popo": [
+    6.276,
+    1.807
+  ],
+  "Port Dauphin, Fort Dauphin": [
+    -25.0271926,
+    46.9951319
+  ],
+  "Port-Louis": [
+    -20.1624522,
+    57.5028044
+  ],
+  "Port-au-Prince": [
+    18.547327,
+    -72.3395928
+  ],
+  "Port-de-Paix": [
+    19.9389855,
+    -72.8308129
+  ],
+  "Porto Novo": [
+    6.4990718,
+    2.6253361
+  ],
+  "Portobelo": [
+    9.5538162,
+    -79.6549259
+  ],
+  "Portudal": [
+    14.4411148,
+    -17.0148303
+  ],
+  "Portuguese Guinea": [
+    11.86,
+    -15.58
+  ],
+  "Puerto Padre": [
+    21.197504,
+    -76.6018039
+  ],
+  "Puerto Rico, port unspecified": [
+    18.2208,
+    -66.5901
+  ],
+  "Quilimane": [
+    -17.879,
+    36.888
+  ],
+  "Quirimba": [
+    -12.4104454,
+    40.5991924
+  ],
+  "Red Sea and Gulf of Aden, port unspecified": [
+    12.0,
+    44.0
+  ],
+  "Rio Dande (N of Luanda)": [
+    -8.46,
+    13.39
+  ],
+  "Rio Grande": [
+    29.74434,
+    -102.67467
+  ],
+  "Rio Nun": [
+    4.5,
+    6.0
+  ],
+  "Rio Pongo": [
+    10.1838065,
+    -14.0201026
+  ],
+  "Rio de Janeiro": [
+    -22.9110137,
+    -43.2093727
+  ],
+  "Rio de Janeiro, Sao Paulo, Santa Catarina": [
+    -26.8380115,
+    -52.9792527
+  ],
+  "Rio de la Plata, port unspecified": [
+    -34.6037,
+    -58.3816
+  ],
+  "River Brass": [
+    4.427498,
+    6.3139074
+  ],
+  "Sagua": [
+    22.812,
+    -80.072
+  ],
+  "Saint Augustine's Bay; St Augustin Bay": [
+    -23.55,
+    43.75
+  ],
+  "Saint-Domingue, then Haiti, port unspecified": [
+    18.55,
+    -72.34
+  ],
+  "Saint-Louis": [
+    16.018,
+    -16.49
+  ],
+  "Saint-Marc": [
+    19.116,
+    -72.697
+  ],
+  "Saint-Pierre": [
+    14.741,
+    -61.179
+  ],
+  "Sainte Luce": [
+    14.478,
+    -60.898
+  ],
+  "Sainte Marie, St Mary's Island": [
+    -16.867,
+    49.917
+  ],
+  "Samana": [
+    19.2036865,
+    -69.3389611
+  ],
+  "Santiago de Cuba": [
+    20.0214263,
+    -75.8294928
+  ],
+  "Santos": [
+    -23.9609448,
+    -46.3166316
+  ],
+  "Sassandra": [
+    4.9490007,
+    -6.0921667
+  ],
+  "Savannah": [
+    32.0790074,
+    -81.0921335
+  ],
+  "Scarcies": [
+    9.4390658,
+    -12.3997343
+  ],
+  "Senegal": [
+    14.7,
+    -17.4
+  ],
+  "Senegambia and offshore Atlantic, port unspecified": [
+    13.5,
+    -17.0
+  ],
+  "Seychelles, port unspecified": [
+    -4.68,
+    55.49
+  ],
+  "Sherbro": [
+    7.5121144,
+    -12.6069463
+  ],
+  "Sierra Leone estuary": [
+    8.5,
+    -13.2
+  ],
+  "Sierra Leone, port unspecified": [
+    8.49,
+    -13.23
+  ],
+  "South Asia, port unspecified": [
+    15.0,
+    74.0
+  ],
+  "Southeast Africa and Indian Ocean islands, port unspecified": [
+    -13.0,
+    43.5
+  ],
+  "Southeast Asia, port unspecified": [
+    5.0,
+    110.0
+  ],
+  "St Barthélemy, port unspecified": [
+    17.8975,
+    -62.8514
+  ],
+  "St Eustatius": [
+    17.5085293,
+    -62.9954769
+  ],
+  "St Kitts, port unspecified": [
+    17.3578,
+    -62.783
+  ],
+  "St Lawrence, Madagascar": [
+    -23.3667,
+    43.7167
+  ],
+  "St Lucia, port unspecified": [
+    13.9094,
+    -60.9789
+  ],
+  "St Paul": [
+    -21.009,
+    55.27
+  ],
+  "St Thomas": [
+    18.343,
+    -64.93
+  ],
+  "Suriname, place unspecified": [
+    3.9193,
+    -56.0278
+  ],
+  "São Tomé": [
+    0.3389242,
+    6.7313031
+  ],
+  "Tamatave, Toamasina": [
+    -18.1547384,
+    49.4150592
+  ],
+  "Trinidad de Cuba": [
+    20.6894621,
+    -76.5398525
+  ],
+  "Tulia, Tulear": [
+    -23.35,
+    43.67
+  ],
+  "Veracruz": [
+    19.333333,
+    -96.666667
+  ],
+  "West Central Africa and St Helena, port unspecified": [
+    -5.0,
+    11.6
+  ],
+  "Whydah, Ouidah": [
+    6.275,
+    2.09
+  ],
+  "Windward Coast, place unspecified": [
+    4.6,
+    -8.2
+  ],
+  "Zanzibar": [
+    -6.0999709,
+    39.3209535
+  ],
+  "Zion Hill": [
+    18.2,
+    -77.7
+  ],
+  "Spanish Circum-Caribbean, unspecified": [
+    17.0,
+    -66.0
+  ],
+  "Sierra Leone port unspecified": [
+    8.49,
+    -13.23
+  ],
+  "Montserrat port unspecified": [
+    16.7425,
+    -62.1878
+  ],
+  "Southeast Africa and Indian Ocean islands, port unspecified ": [
+    -13.0,
+    43.5
+  ]
+}

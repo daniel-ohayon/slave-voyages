@@ -1,0 +1,39 @@
+# TODO
+
+# Done/notes
+
+- when the button state toggles from play to pause, the size of the control panel seems to change a bit.
+  -- done: changed min-width to a fixed width: 110px on #play-btn, accommodating all three labels
+
+- for ships sailing eastward, let's flip their image so that they point right
+  -- done: goingEast computed per voyage (shortest longitudinal arc sign), canvas mirrored
+     via ctx.translate + ctx.scale(-1,1) when drawing east-bound ships
+
+- let's vary the look/shape of the ships a bit for variety and pick one randomly for each voyage
+  -- done: two new inline SVG variants (brigantine, lateen ketch) added alongside ship.svg;
+     shipVariant: Math.floor(Math.random() * 3) assigned per voyage in prepareVoyages
+
+- let's make the default speed the current "0.15x" and make that the 1x in the speed dial
+  -- done: default speed is now 0.15 yr/s, slider midpoint = 1×, label shows relative multiples
+
+- let's use a more legible font for all the controls that doesn't have wonky alignment for the numbers
+  -- done: year display, slave count, speed label, play button all use system-ui with tabular-nums
+
+- let's autoplay the animation when first loading the page
+  -- done: playing=true set on data load, button initialises as "⏸ Pause"
+
+- spacebar to pause/unpause the animation does not work reliably
+  -- done: removed 'BUTTON' from the skip-tag list; e.preventDefault() prevents the native
+     space-to-click activation on the focused button, so exactly one toggle fires
+
+- let's make the trail behind the boats more visible and look more like ocean foam
+  -- done: trail is now rgba(230,242,255) white-blue, lineWidth 1.8, alpha up to 0.63
+
+- let's disable the borders around countries on the map, they are anachronistic for this time period
+  -- done: switched tile layer to ESRI World Physical Map (terrain/bathymetry only, no political borders)
+
+- let's make the appearance/disappearance of the ships smoother with a quick progressinve fade in/fade out to transparent
+  -- done: 8% fade-in and 8% fade-out ramps applied to both the ship sprite and the wake trail
+
+- ships like "Ruby (a) rubi" seem to leave from Madagascar and end up nowhere, what's up with that?
+  -- ah that's because they go to Mascarennes which is super tiny on the map.

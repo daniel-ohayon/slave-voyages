@@ -34,6 +34,50 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', () => { resizeCanvas(); drawFrame(); });
 
+// ── Year histogram chart ───────────────────────────────────────────────────
+const CHART_W = 260, CHART_H = 72;
+const chartCanvas = document.getElementById('chart-canvas');
+chartCanvas.width  = CHART_W;
+chartCanvas.height = CHART_H;
+const chartCtx = chartCanvas.getContext('2d');
+
+let yearlySlaves = null;   // filled once voyages are loaded
+let maxYearlySlaves = 1;
+
+function buildYearlySlaves() {
+  yearlySlaves = new Array(MAX_YEAR - MIN_YEAR + 1).fill(0);
+  for (const v of voyages) {
+    const yi = Math.floor(v.t_start) - MIN_YEAR;
+    if (yi >= 0 && yi < yearlySlaves.length) yearlySlaves[yi] += v.slaves;
+  }
+  maxYearlySlaves = Math.max(...yearlySlaves, 1);
+}
+
+function drawChart() {
+  if (!yearlySlaves) return;
+  chartCtx.clearRect(0, 0, CHART_W, CHART_H);
+
+  const years = yearlySlaves.length;
+  const barW  = CHART_W / years;
+
+  for (let i = 0; i < years; i++) {
+    const barH = (yearlySlaves[i] / maxYearlySlaves) * CHART_H;
+    const x    = i * barW;
+    const past = MIN_YEAR + i <= currentYear;
+    chartCtx.fillStyle = past ? 'rgba(232, 128, 64, 0.82)' : 'rgba(255, 255, 255, 0.13)';
+    chartCtx.fillRect(x, CHART_H - barH, Math.max(barW, 1), barH);
+  }
+
+  // Cursor line at current year
+  const cx = ((currentYear - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * CHART_W;
+  chartCtx.beginPath();
+  chartCtx.strokeStyle = 'rgba(245, 200, 66, 0.9)';
+  chartCtx.lineWidth = 1.5;
+  chartCtx.moveTo(cx, 0);
+  chartCtx.lineTo(cx, CHART_H);
+  chartCtx.stroke();
+}
+
 // ── Ship glyphs ────────────────────────────────────────────────────────────
 // All SVGs share viewBox 240×180, left-facing profile, hull top at y=106 (~59%).
 // Drawn at 54×40 on canvas; anchor offset = SHIP_H * 0.59.
@@ -217,6 +261,12 @@ function prepareVoyages(rawVoyages) {
     if (t_end <= t_start) t_end = t_start + durationYears;
     if (t_end - t_start > 2) t_end = t_start + durationYears;
 
+    // Enforce a minimum visual duration of 60 days so fast ships stay on screen
+    // long enough to see. Intentionally detaches from the historical arrival date
+    // for very short crossings.
+    const MIN_DISPLAY_YEARS = 60 / 365.25;
+    if (t_end - t_start < MIN_DISPLAY_YEARS) t_end = t_start + MIN_DISPLAY_YEARS;
+
     // Eastward if the shortest longitudinal arc from purchase to arrival goes east
     const dLon = ((arrival.coordinates[1] - purchase.coordinates[1]) + 540) % 360 - 180;
 
@@ -285,6 +335,7 @@ let activeShips = [];
 function drawFrame() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   activeShips = [];
+  drawChart();
 
   for (const v of voyages) {
     if (v.t_start > currentYear || v.t_end < currentYear) continue;
@@ -490,6 +541,7 @@ fetch(DATA_URL)
   })
   .then(data => {
     voyages = prepareVoyages(data.voyages);
+    buildYearlySlaves();
     console.log(`Loaded ${voyages.length} animatable voyages (${data.voyages.length} total)`);
     jumpToYear(MIN_YEAR);
     document.getElementById('loading').style.display = 'none';

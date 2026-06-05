@@ -1,0 +1,24 @@
+[
+  {
+    "triggerYear": 1712,
+    "title": "The Witch · Gorée, 1696",
+    "panels": [
+      {
+        "image": "../illustrations/1696-witch/panel1.png",
+        "text": "In 1696, a French slave ship under the merchant-captain Jean Baptiste de Gennes set sail from Gorée, off the coast of Senegambia, bound for the Caribbean. Below deck, dozens of African captives lay shackled in pairs in the darkness, not knowing what awaited them."
+      },
+      {
+        "image": "../illustrations/1696-witch/panel2.png",
+        "text": "Fair winds soon failed. Only a few miles from the African coast the ship stopped dead and, for seven weeks, could not move. As food ran low, a strange illness spread aboard — said to thicken the blood within the heart and liver — and people began to die."
+      },
+      {
+        "image": "../illustrations/1696-witch/panel3.png",
+        "text": "Searching for a cause, the crew questioned the captives below. One woman claimed the ship's fate as her own doing, vowing that none aboard would survive. Bound to a cannon and whipped for two days, she showed no sign of pain — and still the dying went on, until the desperate crew begged her for mercy."
+      },
+      {
+        "image": "../illustrations/1696-witch/panel4.png",
+        "text": "She agreed to spare them on one condition: that she and three companions be freed and carried back to Africa. The crew turned the ship around, set them ashore at Gorée, and soon sailed once more for the Caribbean — bearing the remaining captives into a long and brutal crossing."
+      }
+    ]
+  }
+]

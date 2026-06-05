@@ -241,6 +241,100 @@
       color: #d1d5db;
       font-size: 12px;
     }
+
+    /* ── Story overlay ── */
+    #story-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1800;
+      background: rgba(4, 4, 8, 0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.4s ease;
+      cursor: pointer;
+    }
+
+    #story-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 820px;
+      width: 90%;
+      padding: 0 24px;
+      transition: opacity 0.6s ease;
+    }
+
+    #story-header {
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    #story-title {
+      font-family: 'Georgia', serif;
+      font-size: 12px;
+      font-weight: normal;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #a89060;
+    }
+
+    #story-image-wrap {
+      width: 100%;
+      border: 1px solid rgba(200, 170, 100, 0.18);
+      box-shadow: 0 0 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    #story-img {
+      width: 100%;
+      max-height: 56vh;
+      object-fit: cover;
+      display: block;
+      filter: sepia(15%) brightness(0.88) contrast(1.05);
+    }
+
+    #story-text {
+      font-family: 'Georgia', serif;
+      font-size: 18px;
+      line-height: 1.85;
+      color: #ddd0b0;
+      margin-top: 28px;
+      text-align: center;
+      font-style: italic;
+      max-width: 720px;
+    }
+
+    #story-progress {
+      display: flex;
+      gap: 8px;
+      margin-top: 28px;
+      align-items: center;
+    }
+
+    .story-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: background 0.3s ease;
+    }
+
+    .story-dot.active {
+      background: #a89060;
+    }
+
+    #story-hint {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 18px;
+    }
   </style>
 </head>
 <body>
@@ -282,6 +376,20 @@
     <div class="slider-group">
       <label id="speed-label">Speed · 1.0×</label>
       <input type="range" id="speed-slider" min="1" max="30" value="15">
+    </div>
+  </div>
+
+  <div id="story-overlay">
+    <div id="story-inner">
+      <div id="story-header">
+        <span id="story-title"></span>
+      </div>
+      <div id="story-image-wrap">
+        <img id="story-img" src="" alt="">
+      </div>
+      <div id="story-text"></div>
+      <div id="story-progress"></div>
+      <div id="story-hint">click or press space to continue</div>
     </div>
   </div>
 

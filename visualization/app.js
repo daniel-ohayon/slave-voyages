@@ -41,8 +41,10 @@ chartCanvas.width  = CHART_W;
 chartCanvas.height = CHART_H;
 const chartCtx = chartCanvas.getContext('2d');
 
-let yearlySlaves = null;   // filled once voyages are loaded
-let maxYearlySlaves = 1;
+let yearlySlaves     = null;   // filled once voyages are loaded
+let maxYearlySlaves  = 1;
+let smoothedBusyness = null;   // rolling-average of yearlySlaves, for adaptive speed
+let avgBusyness      = 1;
 
 function buildYearlySlaves() {
   yearlySlaves = new Array(MAX_YEAR - MIN_YEAR + 1).fill(0);
@@ -51,6 +53,26 @@ function buildYearlySlaves() {
     if (yi >= 0 && yi < yearlySlaves.length) yearlySlaves[yi] += v.slaves;
   }
   maxYearlySlaves = Math.max(...yearlySlaves, 1);
+
+  // Smooth over ±7 years so the adaptive speed changes are gradual
+  const R = 7;
+  smoothedBusyness = yearlySlaves.map((_, i) => {
+    let sum = 0, count = 0;
+    for (let j = Math.max(0, i - R); j <= Math.min(yearlySlaves.length - 1, i + R); j++) {
+      sum += yearlySlaves[j]; count++;
+    }
+    return count ? sum / count : 0;
+  });
+  avgBusyness = smoothedBusyness.reduce((a, b) => a + b, 0) / smoothedBusyness.length;
+}
+
+// Linearly interpolated busyness at a fractional year
+function getBusyness(year) {
+  if (!smoothedBusyness) return avgBusyness;
+  const f  = year - MIN_YEAR;
+  const i0 = Math.max(0, Math.min(smoothedBusyness.length - 1, Math.floor(f)));
+  const i1 = Math.min(smoothedBusyness.length - 1, i0 + 1);
+  return smoothedBusyness[i0] + (smoothedBusyness[i1] - smoothedBusyness[i0]) * (f - i0);
 }
 
 function drawChart() {
@@ -304,13 +326,29 @@ let playing     = false;
 let speed       = 0.15;
 let lastTs      = null;
 
+// ── Story state ────────────────────────────────────────────────────────────
+let stories          = [];
+let storyActive      = false;
+let storyData        = null;
+let storyPanelIdx    = 0;
+let storyPanelTimer  = null;
+let triggeredStories = new Set();
+let prevYear         = MIN_YEAR - 0.01;
+const PANEL_DURATION_MS = 12000;
+
 // ── DOM refs ───────────────────────────────────────────────────────────────
-const yearDisplay = document.getElementById('year-display');
-const slaveNumber = document.getElementById('slave-number');
-const playBtn     = document.getElementById('play-btn');
-const yearSlider  = document.getElementById('year-slider');
-const speedSlider = document.getElementById('speed-slider');
-const speedLabel  = document.getElementById('speed-label');
+const yearDisplay   = document.getElementById('year-display');
+const slaveNumber   = document.getElementById('slave-number');
+const playBtn       = document.getElementById('play-btn');
+const yearSlider    = document.getElementById('year-slider');
+const speedSlider   = document.getElementById('speed-slider');
+const speedLabel    = document.getElementById('speed-label');
+const storyOverlay  = document.getElementById('story-overlay');
+const storyInner    = document.getElementById('story-inner');
+const storyTitleEl  = document.getElementById('story-title');
+const storyImg      = document.getElementById('story-img');
+const storyTextEl   = document.getElementById('story-text');
+const storyProgress = document.getElementById('story-progress');
 
 function syncUI() {
   yearDisplay.textContent = Math.floor(currentYear);
@@ -394,7 +432,11 @@ function animate(ts) {
   if (playing) {
     if (lastTs !== null) {
       const dt = Math.min((ts - lastTs) / 1000, 0.1);
-      currentYear = Math.min(MAX_YEAR, currentYear + dt * speed);
+      // Slow down in busy periods, speed up in quiet ones.
+      // Clamp multiplier to [0.15, 5] so it never crawls or rockets.
+      const busy = Math.max(getBusyness(currentYear), avgBusyness * 0.05);
+      const adaptiveSpeed = speed * Math.max(0.15, Math.min(5, avgBusyness / busy));
+      currentYear = Math.min(MAX_YEAR, currentYear + dt * adaptiveSpeed);
 
       for (const v of voyages) {
         if (!v.counted && v.t_start <= currentYear) {
@@ -402,6 +444,18 @@ function animate(ts) {
           v.counted = true;
         }
       }
+
+      if (!storyActive) {
+        for (let i = 0; i < stories.length; i++) {
+          const s = stories[i];
+          if (!triggeredStories.has(i) && prevYear < s.triggerYear && currentYear >= s.triggerYear) {
+            triggeredStories.add(i);
+            showStory(s);
+            break;
+          }
+        }
+      }
+      prevYear = currentYear;
 
       if (currentYear >= MAX_YEAR) {
         playing = false;
@@ -418,9 +472,69 @@ function animate(ts) {
   drawFrame();
 }
 
+// ── Story overlay ──────────────────────────────────────────────────────────
+function showStory(story) {
+  storyActive = true;
+  storyData = story;
+  storyPanelIdx = 0;
+  playing = false;
+  playBtn.textContent = '▶ Play';
+  storyTitleEl.textContent = story.title;
+  storyOverlay.style.opacity = '1';
+  storyOverlay.style.pointerEvents = 'auto';
+  showPanel(0);
+  storyOverlay.addEventListener('click', onStoryClick);
+}
+
+function showPanel(idx) {
+  const panel = storyData.panels[idx];
+  storyInner.style.opacity = '0';
+  setTimeout(() => {
+    storyImg.src = panel.image;
+    storyImg.alt = `${storyData.title} — panel ${idx + 1}`;
+    storyTextEl.textContent = panel.text;
+    storyProgress.innerHTML = storyData.panels
+      .map((_, i) => `<span class="story-dot${i === idx ? ' active' : ''}"></span>`)
+      .join('');
+    storyInner.style.opacity = '1';
+    clearTimeout(storyPanelTimer);
+    storyPanelTimer = setTimeout(advancePanel, PANEL_DURATION_MS);
+  }, 600);
+}
+
+function advancePanel() {
+  storyPanelIdx++;
+  if (storyPanelIdx < storyData.panels.length) {
+    showPanel(storyPanelIdx);
+  } else {
+    hideStory();
+  }
+}
+
+function onStoryClick() {
+  clearTimeout(storyPanelTimer);
+  advancePanel();
+}
+
+function hideStory() {
+  clearTimeout(storyPanelTimer);
+  storyOverlay.removeEventListener('click', onStoryClick);
+  storyOverlay.style.opacity = '0';
+  storyOverlay.style.pointerEvents = 'none';
+  setTimeout(() => {
+    storyActive = false;
+    playing = true;
+    playBtn.textContent = '⏸ Pause';
+  }, 1400);
+}
+
 // ── Controls ───────────────────────────────────────────────────────────────
 playBtn.addEventListener('click', () => {
-  if (currentYear >= MAX_YEAR) jumpToYear(MIN_YEAR);
+  if (currentYear >= MAX_YEAR) {
+    jumpToYear(MIN_YEAR);
+    triggeredStories.clear();
+    prevYear = MIN_YEAR - 0.01;
+  }
   playing = !playing;
   playBtn.textContent = playing ? '⏸ Pause' : '▶ Play';
 });
@@ -458,8 +572,16 @@ map.on('move zoom', drawFrame);
 document.addEventListener('keydown', e => {
   if (e.code === 'Space' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
     e.preventDefault();
-    playing = !playing;
-    playBtn.textContent = playing ? '⏸ Pause' : '▶ Play';
+    if (storyActive) {
+      clearTimeout(storyPanelTimer);
+      advancePanel();
+    } else {
+      playing = !playing;
+      playBtn.textContent = playing ? '⏸ Pause' : '▶ Play';
+    }
+  }
+  if (e.code === 'Escape' && storyActive) {
+    hideStory();
   }
 });
 
@@ -534,14 +656,20 @@ document.addEventListener('mouseleave', () => {
 });
 
 // ── Boot ───────────────────────────────────────────────────────────────────
-fetch(DATA_URL)
-  .then(r => {
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    return r.json();
-  })
-  .then(data => {
+Promise.all([
+  fetch(DATA_URL).then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); }),
+  fetch('../illustrations/stories.json').then(r => r.ok ? r.json() : []).catch(() => []),
+])
+  .then(([data, storyList]) => {
     voyages = prepareVoyages(data.voyages);
     buildYearlySlaves();
+    stories = storyList;
+    for (const s of stories) {
+      for (const p of s.panels) {
+        const img = new Image();
+        img.src = p.image;
+      }
+    }
     console.log(`Loaded ${voyages.length} animatable voyages (${data.voyages.length} total)`);
     jumpToYear(MIN_YEAR);
     document.getElementById('loading').style.display = 'none';

@@ -124,3 +124,4 @@ To add a new story, create a folder under `illustrations/` with panel images and
 - Ambience music tracks generated with Suno
 - Illustrations generated with Gemini (Nano Banana)
 - ship sprites generated with Claude
+- story narration voice-overs generated with ElevenLabs

@@ -304,8 +304,8 @@ let storyTypeTimer   = null;   // interval: typewriter character tick
 let storyPanelTimer  = null;   // timeout: pause after sentence fully typed
 let triggeredStories = new Set();
 let prevYear         = MIN_YEAR - 0.01;
-const TYPE_SPEED_MS      = 26;   // ms per character
-const SENTENCE_PAUSE_MS  = 2800; // pause after full sentence before advancing
+const TYPE_SPEED_MS      = 35;   // ms per character
+const SENTENCE_PAUSE_MS  = 3875; // pause after full sentence before advancing
 
 // ── DOM refs ───────────────────────────────────────────────────────────────
 const yearDisplay   = document.getElementById('year-display');
@@ -463,6 +463,12 @@ function showStory(story) {
   storyTitleEl.textContent = story.title;
   storyOverlay.style.opacity = '1';
   storyOverlay.style.pointerEvents = 'auto';
+  if (story.narration) {
+    narrationAudio.src = story.narration;
+    narrationAudio.play().catch(() => {});
+    oceanAudio.volume    = 0.15;
+    ambienceAudio.volume = 0.1;
+  }
   showPanel(0);
   storyOverlay.addEventListener('click', onStoryClick);
 }
@@ -547,6 +553,10 @@ function onStoryClick() {
 
 function hideStory() {
   clearStoryTimers();
+  narrationAudio.pause();
+  narrationAudio.currentTime = 0;
+  oceanAudio.volume    = 0.5;
+  ambienceAudio.volume = 0.4;
   storyOverlay.removeEventListener('click', onStoryClick);
   storyOverlay.style.opacity = '0';
   storyOverlay.style.pointerEvents = 'none';
@@ -602,10 +612,12 @@ speedSlider.addEventListener('input', () => {
 map.on('move zoom', drawFrame);
 
 // ── Audio ──────────────────────────────────────────────────────────────────
-const oceanAudio    = document.getElementById('ocean-audio');
-const ambienceAudio = document.getElementById('ambience-audio');
+const oceanAudio     = document.getElementById('ocean-audio');
+const ambienceAudio  = document.getElementById('ambience-audio');
+const narrationAudio = document.getElementById('narration-audio');
 oceanAudio.volume    = 0.5;
 ambienceAudio.volume = 0.4;
+narrationAudio.volume = 0.95;
 
 const AMBIENCE_TRACKS = [
   'music/ambience1.mp3',

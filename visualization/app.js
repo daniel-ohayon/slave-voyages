@@ -600,6 +600,13 @@ playBtn.addEventListener('click', () => {
   }
   playing = !playing;
   playBtn.textContent = playing ? '⏸ Pause' : '▶ Play';
+  if (playing) {
+    oceanAudio.play().catch(() => {});
+    if (ambienceAudio.src) ambienceAudio.play().catch(() => {});
+  } else {
+    oceanAudio.pause();
+    ambienceAudio.pause();
+  }
 });
 
 yearSlider.addEventListener('input', () => {
@@ -639,6 +646,7 @@ const AMBIENCE_TRACKS = [
   'music/ambience2.mp3',
   'music/ambience3.mp3',
   'music/ambience4.mp3',
+  'music/ambience5.mp3',
 ];
 
 function playNextAmbience() {
@@ -675,6 +683,13 @@ document.addEventListener('keydown', e => {
     } else {
       playing = !playing;
       playBtn.textContent = playing ? '⏸ Pause' : '▶ Play';
+      if (playing) {
+        oceanAudio.play().catch(() => {});
+        if (ambienceAudio.src) ambienceAudio.play().catch(() => {});
+      } else {
+        oceanAudio.pause();
+        ambienceAudio.pause();
+      }
     }
   }
   if (e.code === 'Escape' && storyActive) {

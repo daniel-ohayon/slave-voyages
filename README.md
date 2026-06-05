@@ -1,6 +1,6 @@
 # French Slave Voyages — Interactive Map
 
-An animated web visualization of French slave voyages during the early modern period (1710–1868), focusing on the experience of the enslaved. Ships move across a world map along historically-grounded routes, with a running tally of slaves transported.
+An animated web visualization of French slave voyages during the early modern period (1710–1868), focusing on the experience of the enslaved. Ships move across a world map along historically-grounded routes, with a running tally of slaves transported. At key moments the animation pauses to tell the story of a specific ship — one illustrated panel and one sentence at a time.
 
 ## Data sources
 
@@ -29,6 +29,14 @@ visualization/
   index.html               # single-page app
   app.js                   # animation engine
   ship.svg                 # ship glyph stamped on canvas
+  ship2.svg                # brigantine variant
+  ship3.svg                # lateen ketch variant
+
+illustrations/
+  stories.json             # story manifest: trigger years, panel texts, image paths
+  1696-witch/              # story of The Witch, Gorée 1696
+    panel1.png … panel4.png
+    story.txt
 ```
 
 ---
@@ -67,13 +75,13 @@ python3 -m http.server 8080
 ### Libraries (all via CDN, no build step)
 
 - **[Leaflet.js](https://leafletjs.com/) 1.9** — map rendering
-- **[CartoDB Voyager No Labels](https://carto.com/basemaps/)** tiles — warm ochre land, blue-grey ocean, no anachronistic country names or borders
+- **[ESRI World Physical Map](https://www.esri.com/)** tiles — physical terrain only, no anachronistic country names or borders
 
 ### Animation model
 
 Each voyage is a ship icon moving from its purchase port to its arrival port. Time is a decimal year (e.g. 1762.5 = mid-1762), parsed from ISO dates in `output.json`.
 
-**Speed**: configurable. Default is 0.33 yr/s (~8 minutes for the full span). Slider is centre-weighted: midpoint = 0.33 yr/s, left half → 0.05 yr/s, right half → 5 yr/s.
+**Speed**: configurable. Default is 0.15 yr/s. Slider is centre-weighted: midpoint = 1×, left half → 0.13×, right half → 33×. Speed also adapts automatically — the animation slows during busy periods (many concurrent ships) and speeds up during quiet stretches, using a 7-year rolling average of slaves embarked per year.
 
 **Route interpolation**: great-circle arcs (spherical linear interpolation) with a library of hand-tuned routing waypoints that keep ships in the ocean:
 - Gulf of Guinea → Americas: detour south through the equatorial Atlantic to catch the trade winds, then northwest.
@@ -84,12 +92,23 @@ Each voyage is a ship icon moving from its purchase port to its arrival port. Ti
 
 `slerpPath()` weights each path segment by its angular arc length so ships move at geographically uniform speed regardless of the number of waypoints.
 
-**Ship glyph**: `ship.svg` stamped with `ctx.drawImage()` on a full-viewport canvas overlay (`pointer-events: none` so map panning works underneath).
+**Ship glyphs**: three SVG variants (full-rigged ship, brigantine, lateen ketch), assigned randomly per voyage and mirrored horizontally for eastward-sailing ships.
 
 **Counters**:
 - *Year* — current animation year, updated every frame.
 - *Slaves embarked* — cumulative, incremented when each voyage's `t_start` is crossed.
+- *Per-year histogram* — drawn on a small canvas panel; past bars in orange, future bars faded, gold cursor line at current year.
 
 **Controls**: Play/Pause (button or spacebar), timeline scrubber, speed slider.
 
 **Hover tooltip**: `document.mousemove` hit-tests against an `activeShips` array (refreshed each draw frame) and shows vessel name, ocean, slave counts, dates, and port-to-port route.
+
+### Story interludes
+
+At trigger years defined in `illustrations/stories.json`, the animation pauses and shows a full-screen illustrated story. Each story is a sequence of panels (image + text). Text is revealed one sentence at a time with a typewriter effect; the layout is fixed from the start (all characters pre-rendered as invisible spans) so already-visible text never shifts as new characters appear.
+
+- **Click or Space**: skip the typewriter on the current sentence, or advance to the next
+- **Escape**: dismiss the story and resume the animation immediately
+- After the final panel the animation resumes automatically
+
+To add a new story, create a folder under `illustrations/` with panel images and add an entry to `stories.json` with a `triggerYear` and the panel texts.

@@ -2,3 +2,4 @@
 .mypy_cache/
 data_processing/slavevoyages_dotorg/slave_voyages_db_atlantic.csv
 data_processing/slavevoyages_dotorg/slave_voyages_db_indian_ocean.csv
+illustrations/draft/

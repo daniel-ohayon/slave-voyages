@@ -331,10 +331,14 @@ let stories          = [];
 let storyActive      = false;
 let storyData        = null;
 let storyPanelIdx    = 0;
-let storyPanelTimer  = null;
+let storySentences   = [];
+let storySentenceIdx = 0;
+let storyTypeTimer   = null;   // interval: typewriter character tick
+let storyPanelTimer  = null;   // timeout: pause after sentence fully typed
 let triggeredStories = new Set();
 let prevYear         = MIN_YEAR - 0.01;
-const PANEL_DURATION_MS = 12000;
+const TYPE_SPEED_MS      = 26;   // ms per character
+const SENTENCE_PAUSE_MS  = 2800; // pause after full sentence before advancing
 
 // ── DOM refs ───────────────────────────────────────────────────────────────
 const yearDisplay   = document.getElementById('year-display');
@@ -473,6 +477,17 @@ function animate(ts) {
 }
 
 // ── Story overlay ──────────────────────────────────────────────────────────
+function splitSentences(text) {
+  return text.split(/(?<=[.!?])\s+/).map(s => s.trim()).filter(Boolean);
+}
+
+function clearStoryTimers() {
+  clearInterval(storyTypeTimer);
+  storyTypeTimer = null;
+  clearTimeout(storyPanelTimer);
+  storyPanelTimer = null;
+}
+
 function showStory(story) {
   storyActive = true;
   storyData = story;
@@ -492,14 +507,54 @@ function showPanel(idx) {
   setTimeout(() => {
     storyImg.src = panel.image;
     storyImg.alt = `${storyData.title} — panel ${idx + 1}`;
-    storyTextEl.textContent = panel.text;
     storyProgress.innerHTML = storyData.panels
       .map((_, i) => `<span class="story-dot${i === idx ? ' active' : ''}"></span>`)
       .join('');
+    storySentences = splitSentences(panel.text);
+    storySentenceIdx = 0;
+    storyTextEl.style.opacity = '1';
+    storyTextEl.textContent = '';
     storyInner.style.opacity = '1';
-    clearTimeout(storyPanelTimer);
-    storyPanelTimer = setTimeout(advancePanel, PANEL_DURATION_MS);
+    typeSentence(0);
   }, 600);
+}
+
+function typeSentence(sentenceIdx) {
+  storySentenceIdx = sentenceIdx;
+  const sentence = storySentences[sentenceIdx];
+
+  // Pre-render the full sentence so the layout (centering) is fixed from the
+  // start. Reveal each character span individually so already-visible text
+  // never shifts position.
+  storyTextEl.innerHTML = [...sentence].map(ch => {
+    const esc = ch.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return `<span class="story-char">${esc}</span>`;
+  }).join('');
+
+  const chars = storyTextEl.querySelectorAll('.story-char');
+  let i = 0;
+  clearStoryTimers();
+  storyTypeTimer = setInterval(() => {
+    chars[i].style.opacity = '1';
+    i++;
+    if (i >= chars.length) {
+      clearInterval(storyTypeTimer);
+      storyTypeTimer = null;
+      storyPanelTimer = setTimeout(nextSentenceOrPanel, SENTENCE_PAUSE_MS);
+    }
+  }, TYPE_SPEED_MS);
+}
+
+function nextSentenceOrPanel() {
+  if (storySentenceIdx + 1 < storySentences.length) {
+    storyTextEl.style.opacity = '0';
+    setTimeout(() => {
+      storyTextEl.style.opacity = '1';
+      typeSentence(storySentenceIdx + 1);
+    }, 500);
+  } else {
+    advancePanel();
+  }
 }
 
 function advancePanel() {
@@ -512,12 +567,20 @@ function advancePanel() {
 }
 
 function onStoryClick() {
-  clearTimeout(storyPanelTimer);
-  advancePanel();
+  if (storyTypeTimer) {
+    // Typewriter still running — reveal all remaining chars immediately
+    clearStoryTimers();
+    storyTextEl.querySelectorAll('.story-char').forEach(el => { el.style.opacity = '1'; });
+    storyPanelTimer = setTimeout(nextSentenceOrPanel, SENTENCE_PAUSE_MS);
+  } else {
+    // Sentence fully typed — advance immediately
+    clearStoryTimers();
+    nextSentenceOrPanel();
+  }
 }
 
 function hideStory() {
-  clearTimeout(storyPanelTimer);
+  clearStoryTimers();
   storyOverlay.removeEventListener('click', onStoryClick);
   storyOverlay.style.opacity = '0';
   storyOverlay.style.pointerEvents = 'none';
@@ -573,8 +636,8 @@ document.addEventListener('keydown', e => {
   if (e.code === 'Space' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
     e.preventDefault();
     if (storyActive) {
-      clearTimeout(storyPanelTimer);
-      advancePanel();
+      clearStoryTimers();
+      onStoryClick();
     } else {
       playing = !playing;
       playBtn.textContent = playing ? '⏸ Pause' : '▶ Play';

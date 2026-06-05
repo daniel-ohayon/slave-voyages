@@ -299,13 +299,15 @@
 
     #story-text {
       font-family: 'Georgia', serif;
-      font-size: 18px;
-      line-height: 1.85;
+      font-size: 22px;
+      line-height: 1.75;
       color: #ddd0b0;
       margin-top: 28px;
       text-align: center;
       font-style: italic;
-      max-width: 720px;
+      max-width: 740px;
+      min-height: 4.5em;
+      transition: opacity 0.5s ease;
     }
 
     #story-progress {
@@ -325,6 +327,10 @@
 
     .story-dot.active {
       background: #a89060;
+    }
+
+    .story-char {
+      opacity: 0;
     }
 
     #story-hint {

@@ -34,15 +34,8 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', () => { resizeCanvas(); drawFrame(); });
 
-// ── Year histogram chart ───────────────────────────────────────────────────
-const CHART_W = 260, CHART_H = 72;
-const chartCanvas = document.getElementById('chart-canvas');
-chartCanvas.width  = CHART_W;
-chartCanvas.height = CHART_H;
-const chartCtx = chartCanvas.getContext('2d');
-
+// ── Busyness data (for adaptive speed) ────────────────────────────────────
 let yearlySlaves     = null;   // filled once voyages are loaded
-let maxYearlySlaves  = 1;
 let smoothedBusyness = null;   // rolling-average of yearlySlaves, for adaptive speed
 let avgBusyness      = 1;
 
@@ -52,8 +45,6 @@ function buildYearlySlaves() {
     const yi = Math.floor(v.t_start) - MIN_YEAR;
     if (yi >= 0 && yi < yearlySlaves.length) yearlySlaves[yi] += v.slaves;
   }
-  maxYearlySlaves = Math.max(...yearlySlaves, 1);
-
   // Smooth over ±7 years so the adaptive speed changes are gradual
   const R = 7;
   smoothedBusyness = yearlySlaves.map((_, i) => {
@@ -75,30 +66,6 @@ function getBusyness(year) {
   return smoothedBusyness[i0] + (smoothedBusyness[i1] - smoothedBusyness[i0]) * (f - i0);
 }
 
-function drawChart() {
-  if (!yearlySlaves) return;
-  chartCtx.clearRect(0, 0, CHART_W, CHART_H);
-
-  const years = yearlySlaves.length;
-  const barW  = CHART_W / years;
-
-  for (let i = 0; i < years; i++) {
-    const barH = (yearlySlaves[i] / maxYearlySlaves) * CHART_H;
-    const x    = i * barW;
-    const past = MIN_YEAR + i <= currentYear;
-    chartCtx.fillStyle = past ? 'rgba(232, 128, 64, 0.82)' : 'rgba(255, 255, 255, 0.13)';
-    chartCtx.fillRect(x, CHART_H - barH, Math.max(barW, 1), barH);
-  }
-
-  // Cursor line at current year
-  const cx = ((currentYear - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * CHART_W;
-  chartCtx.beginPath();
-  chartCtx.strokeStyle = 'rgba(245, 200, 66, 0.9)';
-  chartCtx.lineWidth = 1.5;
-  chartCtx.moveTo(cx, 0);
-  chartCtx.lineTo(cx, CHART_H);
-  chartCtx.stroke();
-}
 
 // ── Ship glyphs ────────────────────────────────────────────────────────────
 // All SVGs share viewBox 240×180, left-facing profile, hull top at y=106 (~59%).
@@ -377,7 +344,6 @@ let activeShips = [];
 function drawFrame() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   activeShips = [];
-  drawChart();
 
   for (const v of voyages) {
     if (v.t_start > currentYear || v.t_end < currentYear) continue;
@@ -635,7 +601,7 @@ speedSlider.addEventListener('input', () => {
 
 map.on('move zoom', drawFrame);
 
-// ── Ocean audio ────────────────────────────────────────────────────────────
+// ── Audio ──────────────────────────────────────────────────────────────────
 const oceanAudio    = document.getElementById('ocean-audio');
 const ambienceAudio = document.getElementById('ambience-audio');
 oceanAudio.volume    = 0.5;

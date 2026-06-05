@@ -52,6 +52,7 @@ Run once with `uv run geocode_ports.py`. Looks up each unique port name via the 
 Run with `python3 clean_voyages.py`. Reads both CSVs, filters to French-flagged vessels, extracts the slave-carrying leg of each voyage (purchase port → arrival port), parses the internal `YEAR,MONTH,DAY` date format into ISO strings, injects coordinates from `ports.json`, and writes `output.json`.
 
 Key choices:
+
 - **Slave-carrying leg only**: the outbound leg (home port → purchase location) is dropped; animation starts at the slave purchase location.
 - **Partial dates preserved**: year-only and year+month dates are kept rather than nulled, so voyages can still be placed on the timeline.
 - **Ocean-aware coordinates**: a few port names (e.g. "Sainte Luce") refer to different places in the Atlantic vs Indian Ocean datasets — handled via `OCEAN_PORT_OVERRIDES` in `clean_voyages.py`.
@@ -84,6 +85,7 @@ Each voyage is a ship icon moving from its purchase port to its arrival port. Ti
 **Speed**: configurable. Default is 0.15 yr/s. Slider is centre-weighted: midpoint = 1×, left half → 0.13×, right half → 33×. Speed also adapts automatically — the animation slows during busy periods (many concurrent ships) and speeds up during quiet stretches, using a 7-year rolling average of slaves embarked per year.
 
 **Route interpolation**: great-circle arcs (spherical linear interpolation) with a library of hand-tuned routing waypoints that keep ships in the ocean:
+
 - Gulf of Guinea → Americas: detour south through the equatorial Atlantic to catch the trade winds, then northwest.
 - East Africa → Caribbean/Americas: south along the coast, round the Cape of Good Hope, bypass Brazil's northeastern bulge.
 - East/west Madagascar ↔ Indian Ocean islands: routed around Madagascar's southern tip, with latitude-aware via points.
@@ -95,9 +97,10 @@ Each voyage is a ship icon moving from its purchase port to its arrival port. Ti
 **Ship glyphs**: three SVG variants (full-rigged ship, brigantine, lateen ketch), assigned randomly per voyage and mirrored horizontally for eastward-sailing ships.
 
 **Counters**:
-- *Year* — current animation year, updated every frame.
-- *Slaves embarked* — cumulative, incremented when each voyage's `t_start` is crossed.
-- *Per-year histogram* — drawn on a small canvas panel; past bars in orange, future bars faded, gold cursor line at current year.
+
+- _Year_ — current animation year, updated every frame.
+- _Slaves embarked_ — cumulative, incremented when each voyage's `t_start` is crossed.
+- _Per-year histogram_ — drawn on a small canvas panel; past bars in orange, future bars faded, gold cursor line at current year.
 
 **Controls**: Play/Pause (button or spacebar), timeline scrubber, speed slider.
 
@@ -112,3 +115,12 @@ At trigger years defined in `illustrations/stories.json`, the animation pauses a
 - After the final panel the animation resumes automatically
 
 To add a new story, create a folder under `illustrations/` with panel images and add an entry to `stories.json` with a `triggerYear` and the panel texts.
+
+--
+
+# Attributions
+
+- Ocean Waves Crashing on the Coast of Big Lagoon, Redwoods by CVLTIV8R -- https://freesound.org/s/803679/ -- License: Creative Commons 0
+- Ambience music tracks generated with Suno
+- Illustrations generated with Gemini (Nano Banana)
+- ship sprites generated with Claude

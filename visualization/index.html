@@ -242,6 +242,35 @@
       font-size: 12px;
     }
 
+    /* ── Start screen ── */
+    #start-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 1900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(4, 4, 8, 0.82);
+      transition: opacity 0.8s ease;
+    }
+
+    #start-btn {
+      font-family: 'Georgia', serif;
+      font-size: 22px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #f5c842;
+      background: transparent;
+      border: 1px solid rgba(245, 200, 66, 0.5);
+      padding: 20px 56px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    #start-btn:hover {
+      background: rgba(245, 200, 66, 0.1);
+      border-color: rgba(245, 200, 66, 0.9);
+    }
+
     /* ── Story overlay ── */
     #story-overlay {
       position: fixed;
@@ -350,6 +379,9 @@
     <p>Loading voyages…</p>
   </div>
 
+  <audio id="ocean-audio" src="music/ocean-waves.mp3" loop preload="auto"></audio>
+  <audio id="ambience-audio" preload="none"></audio>
+
   <div id="map"></div>
   <canvas id="ship-canvas"></canvas>
 
@@ -397,6 +429,10 @@
       <div id="story-progress"></div>
       <div id="story-hint">click or press space to continue</div>
     </div>
+  </div>
+
+  <div id="start-screen">
+    <button id="start-btn">Begin</button>
   </div>
 
   <div id="tooltip"></div>

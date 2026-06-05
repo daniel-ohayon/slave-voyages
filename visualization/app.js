@@ -628,6 +628,40 @@ speedSlider.addEventListener('input', () => {
 
 map.on('move zoom', drawFrame);
 
+// ── Ocean audio ────────────────────────────────────────────────────────────
+const oceanAudio    = document.getElementById('ocean-audio');
+const ambienceAudio = document.getElementById('ambience-audio');
+oceanAudio.volume    = 0.5;
+ambienceAudio.volume = 0.4;
+
+const AMBIENCE_TRACKS = [
+  'music/ambience1.mp3',
+  'music/ambience2.mp3',
+  'music/ambience3.mp3',
+  'music/ambience4.mp3',
+];
+
+function playNextAmbience() {
+  const track = AMBIENCE_TRACKS[Math.floor(Math.random() * AMBIENCE_TRACKS.length)];
+  ambienceAudio.src = track;
+  ambienceAudio.play().catch(() => {});
+}
+
+ambienceAudio.addEventListener('ended', playNextAmbience);
+
+// ── Start screen ───────────────────────────────────────────────────────────
+const startScreen = document.getElementById('start-screen');
+const startBtn    = document.getElementById('start-btn');
+
+startBtn.addEventListener('click', () => {
+  oceanAudio.play().catch(() => {});
+  playNextAmbience();
+  startScreen.style.opacity = '0';
+  setTimeout(() => { startScreen.style.display = 'none'; }, 800);
+  playing = true;
+  playBtn.textContent = '⏸ Pause';
+});
+
 // ── Spacebar: toggle play/pause ────────────────────────────────────────────
 // 'BUTTON' intentionally excluded from the skip list: e.preventDefault() below
 // prevents the native space-to-click activation, so we get exactly one toggle
@@ -736,8 +770,8 @@ Promise.all([
     console.log(`Loaded ${voyages.length} animatable voyages (${data.voyages.length} total)`);
     jumpToYear(MIN_YEAR);
     document.getElementById('loading').style.display = 'none';
-    playing = true;
-    playBtn.textContent = '⏸ Pause';
+    playing = false;
+    playBtn.textContent = '▶ Play';
     const ready = shipImages.filter(img => !img.complete).length;
     if (ready === 0) {
       requestAnimationFrame(animate);
